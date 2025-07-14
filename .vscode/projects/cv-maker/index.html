@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CV Maker - Full Version</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      background-color: #3e1f2b;
+      color: #f5e6ea;
+    }
+
+    .toolbar {
+      background: #2b0f1a;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffdce0;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .form-section, .preview-section {
+      width: 50%;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #ffcfd2;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      background-color: #5a2a3c;
+      border: none;
+      border-radius: 4px;
+      color: #fff0f5;
+    }
+
+    .cv-preview {
+      background: #4b2b36;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 204, 213, 0.3);
+    }
+
+    .cv-preview h1 {
+      color: #ffeef2;
+    }
+
+    .cv-preview p {
+      margin: 4px 0;
+    }
+
+    .cv-section {
+      margin-top: 20px;
+    }
+
+    .cv-section h3 {
+      color: #ffb3c6;
+      margin-bottom: 8px;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #c2185b;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .form-section, .preview-section {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div>
+      🎨 Theme:
+      <select onchange="changeTheme(this.value)">
+        <option value="maroon">Maroon</option>
+        <option value="blue">Midnight Blue</option>
+        <option value="gray">Classic Gray</option>
+      </select>
+    </div>
+    <button onclick="downloadCV()">⬇️ Download CV</button>
+  </div>
+
+  <div class="container">
+    <div class="form-section">
+      <h2>Fill Your CV</h2>
+
+      <label>Upload Profile Picture</label>
+      <input type="file" accept="image/*" onchange="loadImage(event)">
+
+      <label>Name</label>
+      <input type="text" id="name" oninput="updateCV()">
+
+      <label>Email</label>
+      <input type="text" id="email" oninput="updateCV()">
+
+      <label>Phone</label>
+      <input type="text" id="phone" oninput="updateCV()">
+
+      <label>Education</label>
+      <textarea rows="3" id="education" oninput="updateCV()"></textarea>
+
+      <label>Experience</label>
+      <textarea rows="3" id="experience" oninput="updateCV()"></textarea>
+
+      <label>Skills</label>
+      <textarea rows="3" id="skills" oninput="updateCV()"></textarea>
+
+      <label>Projects</label>
+      <textarea rows="3" id="projects" oninput="updateCV()"></textarea>
+
+      <label>Languages</label>
+      <textarea rows="2" id="languages" oninput="updateCV()"></textarea>
+
+      <label>Certifications</label>
+      <textarea rows="2" id="certifications" oninput="updateCV()"></textarea>
+    </div>
+
+    <div class="preview-section">
+      <h2>CV Preview</h2>
+      <div class="cv-preview" id="cv">
+        <img id="profile-pic" class="profile-pic" src="" alt="Profile Picture" style="display:none;">
+        <h1 id="cv-name">Your Name</h1>
+        <p id="cv-email">Email: your@email.com</p>
+        <p id="cv-phone">Phone: 000-0000000</p>
+
+        <div class="cv-section">
+          <h3>Education</h3>
+          <p id="cv-education">Your education details.</p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Experience</h3>
+          <p id="cv-experience">Your work experience.</p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Skills</h3>
+          <p id="cv-skills">Your skills.</p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Projects</h3>
+          <p id="cv-projects">Your projects.</p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Languages</h3>
+          <p id="cv-languages">Languages you know.</p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Certifications</h3>
+          <p id="cv-certifications">Your certifications.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateCV() {
+      document.getElementById("cv-name").innerText = document.getElementById("name").value || "Your Name";
+      document.getElementById("cv-email").innerText = "Email: " + (document.getElementById("email").value || "your@email.com");
+      document.getElementById("cv-phone").innerText = "Phone: " + (document.getElementById("phone").value || "000-0000000");
+      document.getElementById("cv-education").innerText = document.getElementById("education").value || "Your education details.";
+      document.getElementById("cv-experience").innerText = document.getElementById("experience").value || "Your work experience.";
+      document.getElementById("cv-skills").innerText = document.getElementById("skills").value || "Your skills.";
+      document.getElementById("cv-projects").innerText = document.getElementById("projects").value || "Your projects.";
+      document.getElementById("cv-languages").innerText = document.getElementById("languages").value || "Languages you know.";
+      document.getElementById("cv-certifications").innerText = document.getElementById("certifications").value || "Your certifications.";
+    }
+
+    function loadImage(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const image = document.getElementById('profile-pic');
+        image.src = e.target.result;
+        image.style.display = 'block';
+      };
+      reader.readAsDataURL(file); // Base64 conversion for PDF inclusion
+    }
+
+    function changeTheme(theme) {
+      const body = document.body;
+      const cv = document.querySelector('.cv-preview');
+      const toolbar = document.querySelector('.toolbar');
+
+      if (theme === 'blue') {
+        body.style.backgroundColor = '#1a237e';
+        cv.style.background = '#283593';
+        toolbar.style.background = '#1a237e';
+      } else if (theme === 'gray') {
+        body.style.backgroundColor = '#2f2f2f';
+        cv.style.background = '#3f3f3f';
+        toolbar.style.background = '#1e1e1e';
+      } else {
+        body.style.backgroundColor = '#3e1f2b';
+        cv.style.background = '#4b2b36';
+        toolbar.style.background = '#2b0f1a';
+      }
+    }
+
+    function downloadCV() {
+      const element = document.getElementById("cv");
+      html2pdf().set({
+        margin: 0.5,
+        filename: "My_CV.pdf",
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" }
+      }).from(element).save();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+/* style.css */
+
+:root {
+  --bg-color: #0f0f0f;
+  --text-color: #d3d3d3;
+  --accent-color: #ffd700;
+  --card-bg: #1a1a1a;
+  --link-color: #ffcc00;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+header {
+  background-color: var(--card-bg);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+header h1 {
+  color: var(--accent-color);
+}
+
+nav a {
+  color: var(--text-color);
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid #333;
+}
+
+h2 {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent-color);
+}
+
+.project-category {
+  margin-bottom: 30px;
+}
+
+.project-category h3 {
+  color: var(--link-color);
+  margin-bottom: 10px;
+}
+
+.project-category ul li a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.project-category ul li a:hover {
+  color: #ffffff;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e6c200;
+}
+
+footer {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  text-align: center;
+  padding: 20px;
+  border-top: 2px solid var(--accent-color);
+}
+
+img#profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  display: block;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+  img#profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+}
