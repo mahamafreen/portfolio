@@ -1,0 +1,91 @@
+/* Reset and base */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000; /* Black */
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #111;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFD700; /* Gold */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #FFD700;
+}
+
+/* Sections */
+.section {
+  padding: 100px 50px;
+  background-color: #1a1a1a; /* Dark grey */
+  border-bottom: 1px solid #333;
+}
+
+.section h2 {
+  font-size: 32px;
+  color: #FFD700;
+  margin-bottom: 20px;
+}
+
+.section p,
+.section li {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+/* Links */
+a {
+  color: #FFD700;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section {
+    padding: 60px 20px;
+  }
+}
