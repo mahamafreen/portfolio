@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -9,6 +8,7 @@ import Skills from './components/Skills';
 import Education from './components/Education';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+
 import './App.css';
 
 export default function App() {

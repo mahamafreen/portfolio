@@ -1,16 +1,15 @@
-function Projects() {
-  return (
-   <section id="projects" className="section" data-aos="fade-up">
+import React from 'react';
 
-      <h2>Projects</h2>
+export default function Projects() {
+  return (
+    <div className="section">
+      <h2>Mini Projects</h2>
       <ul>
-        <li>Tic Tac Toe Game</li>
-        <li>Snake Game</li>
-        <li>Catch the Colour Game</li>
-        <li>CV Maker</li>
+        <li><a href="/projects/tic-tac-toe/index.html" target="_blank">Tic Tac Toe Game</a></li>
+        <li><a href="/projects/snake-game/index.html" target="_blank">Snake Game</a></li>
+        <li><a href="/projects/catch-the-colour/index.html" target="_blank">Catch the Colour Game</a></li>
+        <li><a href="/projects/cv-maker/index.html" target="_blank">CV Maker</a></li>
       </ul>
-    </section>
+    </div>
   );
 }
-
-export default Projects;
